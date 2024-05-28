@@ -12,7 +12,7 @@ string OutputFileName;
 void setIOOpen(string name) {
 
 	InputFileName = name + ".txt";
-	OutputFileName = name + ".txt";
+	OutputFileName = "cpp_histogram.txt";
 
 	fout.open(OutputFileName, ios::out | ios::trunc);
 
@@ -70,8 +70,8 @@ void read()
 
 void build() 
 {
-
-	vector<int> intervalCounts;
+	cout << "Test";
+	vector<int> intervalFreqs;
 
     for (int i = 0; i < intervals.size(); i++) { //goes through the intervals
 		int start = intervals[i].first; // start of interval
@@ -80,12 +80,12 @@ void build()
 		int frequency = 0; //how many data values are in current interval
 
 		for (int value: dataHolder) {
-			if(start <= value <= end) {
+			if(start <= value && value <= end) {
 				frequency++;
 			}
 		}
 
-		intervalCounts.push_back(frequency); // enters frequency for the interval
+		intervalFreqs.push_back(frequency); // enters frequency for the interval
 	}
 
 	// MAKING HISTOGRAM
@@ -93,29 +93,29 @@ void build()
     for (int i = 0; i < intervals.size(); i++) { //goes through the intervals
 		int start = intervals[i].first; // start of interval
 		int end = intervals[i].second; //end of interval
-		cout << start << "-" << end;
+		fout << start << "-" << end;
 
-		cout.width(2); 
-        cout << " | "; 
+		fout.width(2); 
+        fout << " | "; 
 		
-		int freq = intervalCounts[i];
+		int freq = intervalFreqs[i];
 		for(int j = 0; j < freq; j++) {
-			cout << " x "; 
+			fout << " x "; 
 		}
 
-		cout << endl;
+		fout << endl;
 
 	}
-    cout << "---------------------------------------" << endl; 
-    cout << "    "; 
+    fout << "---------------------------------------" << endl; 
+    fout << "    "; 
   
   
 }
 
 int main()
 {
-    setIOOpen("data");
-    read();
+	setIOOpen("data");
+	read();
     build();
     setIOClose();
     return 0;
