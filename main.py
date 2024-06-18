@@ -5,12 +5,6 @@ def read_data(file_path):
         data = json.load(file)
     return data
 
-# Function to save data to JSON file
-def save_data_to_json(data, file_path):
-    with open(file_path, 'w') as file:
-        json.dump(data, file, indent=4)
-
-# Function to add a new student to the existing JSON data
 def add_student(json_data, id, name, grade):
     new_student = {
         "id": id,
@@ -34,13 +28,8 @@ def main():
         data = {"students": []}
 
     table_printer(data)
-    # Adding a new student
-    #add_student(data, 4, "David", 10)
-
-    # Save updated JSON data back to the file
-    #save_data_to_json(data, file_path)
-    
-    #print("Student added successfully.")
+    add_student(data, 345645, "David", 10)
+    table_printer(data)
 
 if __name__ == "__main__":
     main()
