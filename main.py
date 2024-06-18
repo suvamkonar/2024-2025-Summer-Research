@@ -14,10 +14,11 @@ def add_student(json_data, id, name, grade):
     json_data["students"].append(new_student)
 
 def table_printer(json_data):
-    print("Current Students:")
+    print(f"{'ID':<5}{'Name':<15}{'Grade'}")
+    print("=" * 30)
     for student in json_data["students"]:
         print(f"ID: {student['id']}, Name: {student['name']}, Grade: {student['grade']}")
-    print()
+    print()  
 
 def main():
     file_path = 'data.json'
